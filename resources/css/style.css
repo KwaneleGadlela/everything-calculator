@@ -1,0 +1,360 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+body{
+    background-color: #6B778D;
+    display: grid;
+    place-items:center;
+}
+.page_head{
+    height:15vh;
+    width: 100%;
+    line-height: 15vh;
+    background-color: #17223B;
+    text-align: center;
+    margin-bottom: 5vh;
+    color: #fff;
+    box-shadow: 0px 25px 20px -20px rgba(0, 0, 0, 0.45);
+}
+.page_head h1{
+    font-size: 5vmin;
+}
+.cal_container{
+    display: flex;
+    justify-content: center;
+}
+
+.cal_container .cal_box{
+    position: relative;
+    margin: 1.5vh 0;
+}
+.cal_container .cal_box .label{
+    display: flex;
+    justify-content: center;
+    padding: 1vh 0;
+    background: #17223B;
+    cursor: pointer;  
+    border-radius: 2vmin; 
+    width: 30rem;
+    height:7vmin; 
+    text-align: center;
+    line-height: 5vmin; 
+    font-size: 3vmin;
+    color: #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.head_icons{
+    padding-left: 2vmin;
+    font-size: 2.5vmin;
+}
+.cal_container .cal_box .label::before{
+    content: '+';
+    top: 50%;
+    position: absolute;
+    right:5%;
+    transform: translateY(-50%);
+    font-size: 3vmin;
+    font-weight: 600;
+}
+.cal_container .cal_box.active .label::before{
+    content: '-';
+}
+.cal_container .cal_box .content{
+    position: relative;
+    background-color: #c0c0c0;
+    height:0;
+    overflow: hidden;
+    transition: 0.5s;
+    overflow-y: auto;
+    border-radius: 2vmin;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.cal_container .cal_box.active  .content{
+    height: fit-content;
+    width: 30rem;
+    padding:10px;
+}
+/*====== Numeric Calculator =====*/
+.num_cal{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 2vmin 5vmin;
+}
+.num_display{
+    width: 80%;
+    height: 8vmin;
+    border: none;
+    border-radius: 2vmin;
+    margin: 2.5vmin 10%;
+    margin-top: 4vmin;
+    margin-bottom: 4vmin;
+    background-color: #17223B;   
+    color: #fff;
+    font-size: 3vmin;
+    text-align: right;
+    padding:2.5vmin 3vmin;
+    overflow: hidden;
+    box-shadow: 0 3px 6px #00000029, 0 3px 6px rgba(0,0,0,0.23);
+}
+.num_cal_cont{
+    width:80%;
+    margin: 0 10%;
+    background-color: #6B778D;
+    border-radius: 4vmin;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.num_keys{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.click_btns{
+    text-align: center;
+}
+.num_cal_btn{
+    width: 8vmin;
+    height: 8vmin;
+    border-radius: 25vmin;
+    border:none;
+    background-color: #17223B;
+    color: #fff;
+    font-size: 3vmin;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.num_cal_btn:hover{
+    transition: 0.4s ease-in-out;
+    background-color: #17223bd8;
+}
+.num_cal_btn2{
+    width: 8vmin;
+    height: 8vmin;
+    border-radius: 25vmin;
+    border:none;
+    background-color: #000;
+    color: #fff;
+    font-size: 2.5vmin;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.num_cal_btn2:hover{
+    transition: 0.4s ease-in-out;
+    background-color: #17223B;
+}
+.num_cal_btn, .num_cal_btn2{
+    margin:0 0.5vmin;
+}
+.del_clear{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 0 10%;
+    
+}
+.num_cal_btnC{
+    width: 48%;
+    height: 7vmin;
+    color: #fff;
+    border: none;
+    font-size: 3vmin;
+    font-weight: 600;
+    border-radius: 25vmin;
+    margin-bottom: 3vmin;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.nmcC{
+    background-color: #a81414;
+}
+.nmcC:hover{
+    background-color: #b92020;
+}
+.nmcDel{
+    background-color: #17223B;
+}
+.nmcDel:hover{
+    transition: 0.4s ease-in-out;
+    background-color: #17223bd8;
+}
+/*======= Simple interest ======*/
+.int-cont{
+    margin: 2.5vmin 0;
+}
+.int-row-input{
+    display: flex;
+    justify-content: center;
+} 
+.cont-row{
+    padding-top: 2vmin;
+}
+.int-wrapper{  
+    padding: 0 2vmin;
+} 
+.int-select-box{
+    width: 6rem;
+    height: 2rem;
+    background-color: #6B778D;
+    border: 1px solid #17223B;
+    border-radius: 1vmin;
+    color: #000;
+    font-size: 2.5vmin;
+    font-weight: 700;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.int-select-box:focus{
+    outline: none;
+}
+/*====== Compound Interest ======*/
+.note{
+    margin-left: 4vmin;
+    font-size: 2vmin;
+    font-weight: 600;
+    color: #17223B;
+}
+.perc_out2{
+    font-size: 3vmin;
+    font-weight: 700;
+    margin: 1vmin 0;
+}
+/*======= Area Calculator =======*/
+.area-head{
+    margin-left: 4vmin;
+    color: #17223B;
+}
+.line-sep{
+    margin: 2vmin 2vmin;
+    border: 1px solid #17223B;
+}
+.area-wrapper{
+    display: flex;
+    justify-content: center;
+    padding-top: 4vmin ;
+}
+.area-select-box{
+    width: 20vmin;
+    height: 5vmin;
+    text-align: center;
+    font-size: 2.5vmin;
+    font-weight: 600;
+    border-radius: 1vmin;
+    background-color: #6B778D;
+    border: 1px solid #17223B;
+
+}
+/*======== BMI Calculator =======*/
+.input-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top:2vmin;
+}
+.bmi-labels{
+    margin: 0  2vmin;
+    font-size: 2.5vmin;
+    font-weight: 600;
+}
+.inputBx{
+    width:5rem;
+    height: 2rem;
+    background-color: #c0c0c0;
+    border: none;
+    border-bottom: 2px solid #6B778D;
+    text-align: center;
+    font-size: 2.5vmin;
+}
+.inputBox:focus{ /*removes outline when clicking on input*/
+    outline: none;
+    border-bottom: 2px solid #17223B;
+}
+/* Remove up and down arrows from number input */
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}
+  
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button{ 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+.btns{
+    display: flex;
+    justify-content: center;
+    margin: 2vmin 0;
+}
+.cal_btn{
+    margin: 0 1vmin;
+    width:20vmin;
+    height:5vmin;
+    background-color: #17223B;
+    border: solid 2px #17223B ;
+    border-radius: 1.5vmin;
+    color:#fff;
+    font-size: 2vmin;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.cal_btn:hover{
+    background-color: #6B778D;
+    color: #17223B;
+    transition: 0.4s;
+}
+.output{
+    text-align: center;
+}
+.output #bmi{
+    font-size: 8vmin;
+}
+.output #result strong{
+    text-transform: uppercase;
+}
+.bmi_scale{
+    display: flex;
+    margin: 2vmin 0;
+}
+.bmi_scale div{
+    flex: 1;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2vmin;
+}
+.nb{
+    text-align: center;
+    margin-bottom: 1vmin;
+    font-weight: 550;
+    font-size: 2vmin;
+    color: #17223B;
+}
+.cal_foot{
+    height: 15vmin;
+    width: 100%;
+    background-color: #17223B;
+    margin-top: 5vmin;
+}
+.foot_text{
+    text-align: center;
+    padding-top: 3vmin;
+    color: #fff;
+    font-weight: 600;
+}
+.socials{
+    display: flex;
+    justify-content: center;
+}
+.socials a{
+    font-size: 4vmin;
+    color: #6B778D;
+    margin:2vmin 2vmin;
+    text-decoration: none;
+}
+.socials a:hover{
+    color: #fff;
+    transition: 0.4s ease-out;
+}

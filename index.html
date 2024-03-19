@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/all.min.css">
+    <link rel="stylesheet" href="resources/css/fontawesome.min.css">
+    <title>Everything Calculator</title>
+</head>
+<body>
+    <header class="page_head">
+        <h1>Your Everything Calculator</h1>
+    </header>
+    <section>
+
+        <!-- Numbers Calculator -->
+        <div class="cal_container">
+            <div class="cal_box">
+                <div class="label">
+                    <p>Numeric Calculator</p>
+                    <div class="head_icons"><i class="fas fa-calculator"></i></div>
+                </div>
+                <div class="content">
+                    <div class="num_cal" id="num_cal">
+                        <div class="num_cal_cont">
+                            <div class="num_display" id="num_display"></div> 
+                            <div class="num_keys" id="num_keys">
+                                <div class="click_btns">
+                                    <button class="num_cal_btn2" onclick="appendToDisplay('/')"><i class="fas fa-divide"></i></button>
+                                    <button class="num_cal_btn" onclick="appendToDisplay('7')">7</button>
+                                    <button class="num_cal_btn" onclick="appendToDisplay('8')">8</button>
+                                    <button class="num_cal_btn" onclick="appendToDisplay('9')">9</button>
+                                </div>
+                                <br>
+                                <div class="click_btns">
+                                    <button class="num_cal_btn2" onclick="appendToDisplay('*')"><i class="fas fa-times"></i></button>
+                                    <button class="num_cal_btn" onclick="appendToDisplay('4')">4</button>
+                                    <button class="num_cal_btn" onclick="appendToDisplay('5')">5</button>
+                                    <button class="num_cal_btn" onclick="appendToDisplay('6')">6</button>
+                                </div>
+                                <br>
+                                <div class="click_btns">
+                                    <button class="num_cal_btn2" onclick="appendToDisplay('-')"><i class="fas fa-minus"></i></button>
+                                    <button class="num_cal_btn" onclick="appendToDisplay('1')">1</button>
+                                    <button class="num_cal_btn" onclick="appendToDisplay('2')">2</button>
+                                    <button class="num_cal_btn" onclick="appendToDisplay('3')">3</button>
+                                </div>
+                                <br>
+                                <div class="click_btns">
+                                    <button class="num_cal_btn2" onclick="appendToDisplay('+')"><i class="fas fa-plus"></i></button>
+                                    <button class="num_cal_btn" onclick="appendToDisplay('0')">0</button>
+                                    <button class="num_cal_btn" onclick="appendToDisplay('.')">.</button>
+                                    <button class="num_cal_btn2" onclick="calculate()"><i class="fas fa-equals"></i></button>
+                                </div>
+                                <br>
+                                <div class="del_clear">
+                                    <button class="num_cal_btnC nmcC" onclick="clearDisplay()">C</button>
+                                    <button class="num_cal_btnC nmcDel" onclick="delDisplay()">Del</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <p class="nb">
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interest (Simple) Calculator -->
+        <div class="cal_container">
+            <div class="cal_box">
+                <div class="label">
+                    <p>Simple Interest Calculator</p>
+                    <div class="head_icons"><i class="far fa-chart-bar"></i></div>
+                </div>
+                <div class="content">
+                    <form id="interestForm">
+                        <div class="int-cont">
+                            <div class="int-row-input">
+                                <div class="int-wrapper">
+                                    <label class="bmi-labels" for="principal">Principal:</label>
+                                    <input class="inputBx inputBox" type="number" id="principal" name="principal"
+                                        min="0" step="0.1" value="0.0">
+                                </div>
+                                <div class="int-wrapper">
+                                    <label class="bmi-labels" for="rate">Rate (%):</label>
+                                    <input class="inputBx inputBox" type="number" id="rate" name="rate"
+                                        min="0" step="0.1" value="0.0">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="int-row-input">
+                                <div class="int-wrapper">
+                                    <label class="bmi-labels" for="period">Period:</label>
+                                    <input class="inputBx inputBox" type="number" id="period" name="period"
+                                        min="0" step="1" value="0">
+                                </div>
+                                <div class="int-wrapper">
+                                    <select class="int-select-box" name="int-select" id="int-select">
+                                        <option value="month">Month(s)</option>
+                                        <option value="year">Year(s)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>    
+                        <div class="btns">
+                            <button type="reset" class="cal_btn">Reset</button>
+                            <button type="submit" class="cal_btn" id="int-cal-btn">Calculate</button>
+                        </div>
+                    </form>
+                    <div class="output">
+                        <h3>Your Principal is:</h3>
+                        <p id="print_principal">0</p>
+                        <br>
+                        <h3>Your interest in cash:</h3>
+                        <p id="print_rate">0</p>
+                        <br>
+                        <h3>Your TOTAL interest is:</h3>
+                        <h2 id="print_total" >0</h2>
+                        <br>
+                    </div>
+                    <p class="nb">                        
+                        The principal - is the original amount borrowed for a loan.<br>
+                        The interest rate - is the amount a lender charges a borrower <br>
+                        and is a percentage of the principal.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interest (Compound) Calculator -->
+        <div class="cal_container">
+            <div class="cal_box">
+                <div class="label">
+                    <p>Compound Interest Calculator</p>
+                    <div class="head_icons"><i class="fas fa-chart-line"></i></div>
+                </div>
+                <div class="content">
+                    <form id="compinterestForm">
+                        <div class="int-cont">
+                            <div class="int-row-input">
+                                <div class="int-wrapper">
+                                    <label class="bmi-labels" for="comp_principal">Principal:</label>
+                                    <input class="inputBx inputBox" type="number" id="comp_principal" name="comp_principal"
+                                        min="0" step="0.1" value="0.0">
+                                </div>
+                                <div class="int-wrapper">
+                                    <label class="bmi-labels" for="comp_rate">Rate (%):</label>
+                                    <input class="inputBx inputBox" type="number" id="comp_rate" name="comp_rate"
+                                        min="0" step="0.1" value="0.0">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="int-row-input">
+                                <div class="int-wrapper">
+                                    <p class="bmi-labels" for="comp_period">Times interest applied:</p >
+                                </div>
+                                <div class="int-wrapper">
+                                    <select class="int-select-box" name="comp_select" id="comp_select">
+                                        <option value="daily">Daily</option>
+                                        <option value="weekly">Weekly</option>
+                                        <option value="monthly">Monthly</option>
+                                        <option value="yearly">Yearly</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="int-row-input cont-row">
+                                <div class="int-wrapper">
+                                    <label class="bmi-labels" for="comp_period">Compounding Period:</label>
+                                    <input class="inputBx inputBox" type="number" id="comp_period2" name="comp_period2"
+                                        min="0" step="0.1" value="0.0">
+                                </div>
+                                <div class="int-wrapper">
+                                    <select class="int-select-box" name="comp_select2" id="comp_select2">
+                                        <option value="month">Month(s)</option>
+                                        <option value="year">Year(s)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>    
+                        <div class="btns">
+                            <button type="reset" class="cal_btn">Reset</button>
+                            <button type="submit" class="cal_btn" id="comp-cal-btn">Calculate</button>
+                        </div>
+                    </form>
+                    <div class="output">
+                        <h3>Your Principal is:</h3>
+                        <p id="comp_print_principal">0</p>
+                        <br>
+                        <h3>Your total interest in cash:</h3>
+                        <p id="comp_print_rate">0</p>
+                        <br>
+                        <h3>Your TOTAL interest is:</h3>
+                        <h2 id="comp_print_total" >0</h2>
+                        <br>
+                    </div>
+                    <div class="note">
+                        <p><strong>Note:</strong></p>
+                        <p>- Daily = 24 hours</p>
+                        <p>- Weekly = 7 days</p>
+                        <p>- Monthly = 30 days</p>
+                        <p>- Yearly = 12 Months</p>
+                    </div>
+                    <br>                     
+                    <p class="nb">   
+                        The principal - is the original amount borrowed for a loan.<br>
+                        The interest rate - is the amount a lender charges a borrower <br>
+                        and is a percentage of the principal.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Percentage Cslculator -->
+        <div class="cal_container">
+            <div class="cal_box">
+                <div class="label">
+                    <p>Percentage Calculator</p>
+                    <div class="head_icons"><i class="fas fa-percent"></i></div>
+                </div>
+                <div class="content">
+                    <form id="perc_form">
+                        <div class="input-container">
+                            <label for="perc_value" class="bmi-labels">What is:</label>
+                            <input type="number" class="inputBx inputBox" name="perc_value" id="perc_value"
+                                min="0" step="0.01" value="0">
+                            <br>
+                            <label for="perc_perc" class="bmi-labels"> % of:</label>
+                            <input type="number" class="inputBx inputBox" name="perc_perc" id="perc_perc"
+                                min="0" step="0.01" value="0">
+                        </div>
+                        <br>
+                        <div class="btns">
+                            <button type="reset" class="cal_btn">Reset</button>
+                            <button type="submit" class="cal_btn" id="perc_cal_btn">Calculate</button>
+                        </div>
+                    </form>
+                     <div class="output">
+                        <h3>Your answer is:</h3>
+                        <p id="percentage_out1" class="perc_out2">0</p>
+                    </div>
+
+                    <hr class="line-sep">
+                    <form id="perc_form2">
+                        <div class="input-container">
+                            <label for="perc_value2" class="bmi-labels"></label>
+                            <input type="number" class="inputBx inputBox" name="perc_value2" id="perc_value2"
+                                min="0" step="0.01" value="0">
+                            <br>
+                            <label for="perc_perc2" class="bmi-labels"> is what percentage of</label>
+                            <input type="number" class="inputBx inputBox" name="perc_perc2" id="perc_perc2"
+                                min="0" step="0.01" value="0">
+                        </div>
+                        <br>
+                        <div class="btns">
+                            <button type="reset" class="cal_btn">Reset</button>
+                            <button type="submit" class="cal_btn" id="perc_cal_btn2">Calculate</button>
+                        </div>
+                    </form>
+                    <div class="output">
+                        <h3>Your answer is:</h3>
+                        <p id="percentage_out2" class="perc_out2">0%</p>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <!-- Area Calculator -->
+        <div class="cal_container">
+            <div class="cal_box">
+                <div class="label">
+                    <p>Area Calculator</p>
+                    <div class="head_icons"><i class="fas fa-ruler-combined"></i></div>
+                </div>
+                <div class="content">
+                    <p class="nb">
+                        <em>                        
+                            Please note that all measurements are in centimeters (cm). <br>
+                            incase of need please use the unit Converter first.
+                        </em>
+                    </p>
+                    <h3 class="area-head">Square/Rectangle Area:</h3>
+                    <form id="area_form1">
+                        <div class="input-container">
+                            <label for="area_value1" class="bmi-labels">Length:</label>
+                            <input type="number" class="inputBx inputBox" name="area_value1" id="area_value1"
+                                min="0" step="0.01" value="0">
+                            <br>
+                            <label for="area_area1_1" class="bmi-labels"> width:</label>
+                            <input type="number" class="inputBx inputBox" name="area_area1_1" id="area_area1_1"
+                                min="0" step="0.01" value="0">
+                        </div>
+                        <br>
+
+                        <div class="btns">
+                            <button type="reset" class="cal_btn">Reset</button>
+                            <button type="submit" class="cal_btn" id="area_cal_btn1">Calculate</button>
+                        </div>
+                    </form>
+                    <div class="output">
+                        <h3>Your answer is:</h3>
+                        <p id="area_out1" class="perc_out2">0</p>
+                    </div>
+                    <br>
+                    <hr class="line-sep">
+                    <h3 class="area-head">Traingle Area:</h3>
+                    <form id="area_form2">
+                        <div class="input-container">
+                            <label for="area_value2" class="bmi-labels">Edge 1</label>
+                            <input type="number" class="inputBx inputBox" name="area_value2" id="area_value2"
+                                min="0" step="0.01" value="0">
+                            <br>
+                            <label for="area_area2_2" class="bmi-labels">Edge 2</label>
+                            <input type="number" class="inputBx inputBox" name="area_area2_2" id="area_area2_2"
+                                min="0" step="0.01" value="0">
+                        </div>
+                        <br>
+                        <div class="input-container">
+                            <label for="area_area2_3" class="bmi-labels">Edge 3</label>
+                            <input type="number" class="inputBx inputBox" name="area_area2_3" id="area_area2_3"
+                                min="0" step="0.01" value="0">
+                        </div>
+                        <br>
+
+                        <div class="btns">
+                            <button type="reset" class="cal_btn">Reset</button>
+                            <button type="submit" class="cal_btn" id="area_cal_btn2">Calculate</button>
+                        </div>
+                    </form>
+                    <div class="output">
+                        <h3>Your answer is:</h3>
+                        <p id="area_out2"class="perc_out2">0</p>
+                    </div>
+                    <br>
+
+                    <hr class="line-sep">
+                    <h3 class="area-head">Circle Area:</h3>
+                    <form id="area_form3">
+                        <div class="input-container">
+                            <label for="area_value3" class="bmi-labels">radius (r)</label>
+                            <input type="number" class="inputBx inputBox" name="area_value3" id="area_value3"
+                                min="0" step="0.01" value="0">
+                            <br>
+                        </div>
+                        <br>
+
+                        <div class="btns">
+                            <button type="reset" class="cal_btn">Reset</button>
+                            <button type="submit" class="cal_btn" id="area_cal_btn3">Calculate</button>
+                        </div>
+                    </form>
+                    <div class="output">
+                        <h3>Your answer is:</h3>
+                        <p id="area_out3" class="perc_out2">0</p>
+                    </div>
+                    <br>  
+                </div>
+            </div>
+        </div>
+
+        <!-- Unit Calculator -->
+        <div class="cal_container">
+            <div class="cal_box">
+                <div class="label">
+                    <p>Unit Converter</p>
+                    <div class="head_icons"><i class="fas fa-ruler"></i></div>
+                </div>
+                <div class="content">
+                    <form id="unitForm">
+                        <div class="int-cont">
+                            <div class="int-row-input">
+                                <div class="int-wrapper">
+                                    <input class="inputBx inputBox" type="number" id="unit_cm" name="unit_cm"
+                                    min="0" step="0.0001" value="0">
+                                    <label class="bmi-labels" for="unit_cm">CM to</label>
+                                </div>
+                                <div class="wrapper">
+                                    <select class="area-select-box" name="unit_select" id="unit_select">
+                                        <option value="meter(s)">Meter(s)</option>
+                                        <option value="kilometer(s)">Kilometer(s)</option>
+                                        <option value="mile(s)">Mile(s)</option>
+                                        <option value="inch(es)">Inches(s)</option>
+                                        <option value="feet">Feet</option>
+                                        <option value="yard(s)">Yard(s)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>    
+                        <div class="btns">
+                            <button type="reset" class="cal_btn">Reset</button>
+                            <button type="submit" class="cal_btn" id="unit-cal-btn">Calculate</button>
+                        </div>
+                    </form>
+                    <div class="output">
+                        <h3>Your answer is:</h3>
+                        <p id="unit_out1" class="perc_out2">0</p>
+                    </div>
+
+                    <hr class="line-sep">
+                    <form id="unitForm2">
+                        <div class="int-cont">
+                            <div class="int-row-input">
+                                <div class="int-wrapper">
+                                    <input class="inputBx inputBox" type="number" id="unit_m" name="unit_m"
+                                    min="0" step="0.0001" value="0">
+                                    <label class="bmi-labels" for="unit_m">M to</label>
+                                </div>
+                                <div class="wrapper">
+                                    <select class="area-select-box" name="unit_select2" id="unit_select2">
+                                        <option value="centimeter(s)">Centimeter(s)</option>
+                                        <option value="kilometer(s)">Kilometer(s)</option>
+                                        <option value="mile(s)">Mile(s)</option>
+                                        <option value="inch(es)">Inches(s)</option>
+                                        <option value="feet">Feet</option>
+                                        <option value="yard(s)">Yard(s)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>    
+                        <div class="btns">
+                            <button type="reset" class="cal_btn">Reset</button>
+                            <button type="submit" class="cal_btn" id="unit-cal-btn2">Calculate</button>
+                        </div>
+                    </form>
+                    <div class="output">
+                        <h3>Your answer is:</h3>
+                        <p id="unit_out2" class="perc_out2">0</p>
+                    </div>
+
+                    <hr class="line-sep">
+                    <form id="unitForm3">
+                        <div class="int-cont">
+                            <div class="int-row-input">
+                                <div class="int-wrapper">
+                                    <input class="inputBx inputBox" type="number" id="unit_k" name="unit_k"
+                                    min="0" step="0.0001" value="0">
+                                    <label class="bmi-labels" for="unit_k">KM to</label>
+                                </div>
+                                <div class="wrapper">
+                                    <select class="area-select-box" name="unit_select3" id="unit_select3">
+                                        <option value="centimeter(s)">Centimeter(s)</option>
+                                        <option value="meter(s)">Meter(s)</option>
+                                        <option value="mile(s)">Mile(s)</option>
+                                        <option value="inch(es)">Inches(s)</option>
+                                        <option value="feet">Feet</option>
+                                        <option value="yard(s)">Yard(s)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>    
+                        <div class="btns">
+                            <button type="reset" class="cal_btn">Reset</button>
+                            <button type="submit" class="cal_btn" id="unit-cal-btn3">Calculate</button>
+                        </div>
+                    </form>
+                    <div class="output">
+                        <h3>Your answer is:</h3>
+                        <p id="unit_out3" class="perc_out2">0</p>
+                    </div>
+
+                    <hr class="line-sep">
+                    <form id="unitForm4">
+                        <div class="int-cont">
+                            <div class="int-row-input">
+                                <div class="int-wrapper">
+                                    <input class="inputBx inputBox" type="number" id="unit_mi" name="unit_mi"
+                                    min="0" step="0.0001" value="0">
+                                    <label class="bmi-labels" for="unit_mi">Miles to</label>
+                                </div>
+                                <div class="wrapper">
+                                    <select class="area-select-box" name="unit_select4" id="unit_select4">
+                                        <option value="centimeter(s)">Centimeter(s)</option>
+                                        <option value="meter(s)">Meter(s)</option>
+                                        <option value="kilometer(s)">Kilometer(s)</option>
+                                        <option value="inch(es)">Inches(s)</option>
+                                        <option value="feet">Feet</option>
+                                        <option value="yard(s)">Yard(s)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>    
+                        <div class="btns">
+                            <button type="reset" class="cal_btn">Reset</button>
+                            <button type="submit" class="cal_btn" id="unit-cal-btn4">Calculate</button>
+                        </div>
+                    </form>
+                    <div class="output">
+                        <h3>Your answer is:</h3>
+                        <p id="unit_out4" class="perc_out2">0</p>
+                    </div>
+
+                    <hr class="line-sep">
+                    <form id="unitForm5">
+                        <div class="int-cont">
+                            <div class="int-row-input">
+                                <div class="int-wrapper">
+                                    <input class="inputBx inputBox" type="number" id="unit_inch" name="unit_inch"
+                                    min="0" step="0.0001" value="0">
+                                    <label class="bmi-labels" for="unit_inch">inch(es) to</label>
+                                </div>
+                                <div class="wrapper">
+                                    <select class="area-select-box" name="unit_select5" id="unit_select5">
+                                        <option value="centimeter(s)">Centimeter(s)</option>
+                                        <option value="meter(s)">Meter(s)</option>
+                                        <option value="kilometer(s)">Kilometers(s)</option>
+                                        <option value="mile(s)">Mile(s)</option>
+                                        <option value="feet">Feet</option>
+                                        <option value="yard(s)">Yard(s)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>    
+                        <div class="btns">
+                            <button type="reset" class="cal_btn">Reset</button>
+                            <button type="submit" class="cal_btn" id="unit-cal-btn5">Calculate</button>
+                        </div>
+                    </form>
+                    <div class="output">
+                        <h3>Your answer is:</h3>
+                        <p id="unit_out5" class="perc_out2">0</p>
+                    </div>
+
+                    <hr class="line-sep">
+                    <form id="unitForm6">
+                        <div class="int-cont">
+                            <div class="int-row-input">
+                                <div class="int-wrapper">
+                                    <input class="inputBx inputBox" type="number" id="unit_ft" name="unit_ft"
+                                    min="0" step="0.0001" value="0">
+                                    <label class="bmi-labels" for="unit_ft">ft to</label>
+                                </div>
+                                <div class="wrapper">
+                                    <select class="area-select-box" name="unit_select6" id="unit_select6">
+                                        <option value="centimeter(s)">Centimeter(s)</option>
+                                        <option value="meter(s)">Meter(s)</option>
+                                        <option value="kilometer(s)">Kilometer(s)</option>
+                                        <option value="mile(s)">Mile(s)</option>
+                                        <option value="inch(es)">Inches(s)</option>
+                                        <option value="yard(s)">Yard(s)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>    
+                        <div class="btns">
+                            <button type="reset" class="cal_btn">Reset</button>
+                            <button type="submit" class="cal_btn" id="unit-cal-btn6">Calculate</button>
+                        </div>
+                    </form>
+                    <div class="output">
+                        <h3>Your answer is:</h3>
+                        <p id="unit_out6" class="perc_out2">0</p>
+                    </div>
+
+                    <hr class="line-sep">
+                    <form id="unitForm7">
+                        <div class="int-cont">
+                            <div class="int-row-input">
+                                <div class="int-wrapper">
+                                    <input class="inputBx inputBox" type="number" id="unit_y" name="unit_y"
+                                    min="0" step="0.0001" value="0">
+                                    <label class="bmi-labels" for="unit_y">Yards to</label>
+                                </div>
+                                <div class="wrapper">
+                                    <select class="area-select-box" name="unit_select7" id="unit_select7">
+                                        <option value="centimeter(s)">Centimeter(s)</option>
+                                        <option value="meter(s)">Meter(s)</option>
+                                        <option value="mile(s)">Mile(s)</option>
+                                        <option value="inch(es)">Inches(s)</option>
+                                        <option value="feet">Feet</option>
+                                        <option value="yard(s)">Yard(s)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>    
+                        <div class="btns">
+                            <button type="reset" class="cal_btn">Reset</button>
+                            <button type="submit" class="cal_btn" id="unit-cal-btn7">Calculate</button>
+                        </div>
+                    </form>
+                    <div class="output">
+                        <h3>Your answer is:</h3>
+                        <p id="unit_out7" class="perc_out2">0</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- BMI calculator -->
+        <div class="cal_container">
+            <div class="cal_box">
+                <div class="label">
+                    <p>The BMI Calculator</p>
+                    <div class="head_icons"><i class="fas fa-balance-scale-right"></i></i></div>
+                </div>
+                <div class="content">
+                    <form id="bmi_form">
+                        <div class="input-container">
+                            <label for="weight" class="bmi-labels">Weight (kg):</label>
+                            <input type="number" class="inputBx inputBox" name="weight" id="weight"
+                                min="0" step="0.1" value="0.0">
+                            <br>
+                            <label for="height" class="bmi-labels">Height (cm):</label>
+                            <input type="number" class="inputBx inputBox" name="height" id="height"
+                                min="0" step="0.1" value="0.0">
+                        </div>
+                        <br>
+                        <div class="btns">
+                            <button type="reset" class="cal_btn">Reset</button>
+                            <button type="submit" class="cal_btn" id="bmi_cal_btn">Calculate</button>
+                        </div>
+                    </form>
+                    <div class="output">
+                        <h3>Your BMI is</h3>
+                        <p id="bmi">0</p>
+                        <p id="result">N/A</p>
+                    </div>
+                    <div class="bmi_scale">
+                        <div>
+                            <h4>Underweight</h4>
+                            <p>Below 18.5</p>
+                        </div>
+                        <div>
+                            <h4>Normal</h4>
+                            <p>18.5 - 24.9</p>
+                        </div>
+                        <div>
+                            <h4>Overweight</h4>
+                            <p>25.0 - 29.9</p>
+                        </div>
+                        <div>
+                            <h4>Obesity</h4>
+                            <p>30.0 and above</p>
+                        </div>
+                    </div>
+                    <p class="nb">
+                        <em>                        
+                            *This BMI calculator is for adults 18 years and older.<br>
+                            If Under that, please talk to a doctor or go to the nearest clinic.
+                        </em>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="cal_foot">
+        <p class="foot_text">Designed and Developed by Kwanele Gadlela</p>
+        <div class="socials">
+            <a href="https://www.facebook.com/kwanelefanagadlela?mibextid=ZbWKwL">
+                <i class="fab fa-facebook-square"></i>
+            </a>
+            <a href="https://www.instagram.com/the_real_kwanele?igsh=MTc5ZHFtZ2l5aGZpYw==">
+                <i class="fab fa-instagram-square"></i>
+            </a>
+            <a href="https://github.com/KwaneleGadlela">   
+                <i class="fab fa-github-square"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/gadlela-kwanele-976431204/">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.behance.net/kwanelegadlela/moodboards">
+                <i class="fab fa-behance-square"></i>
+            </a>
+        </div>
+    </footer>
+</body>
+<script src="resources/js/accordion.js"></script>
+<script src="resources/js/calculations.js"></script>
+</html>
